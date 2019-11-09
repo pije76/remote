@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '$4w_b*$%f)54#7!us#e%%$&&r_w)zq*+ortmw3&&pr#+2ek9sd'
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '$4w_b*$%f)54#7!us#e%%$&&r_w)zq*+ortmw3&&pr#+2ek9sd'
+#SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
+#DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -59,9 +59,7 @@ INSTALLED_APPS = [
     'carousel',
     'easy_thumbnails',
     'adminsortable',
-    'star_ratings',
     'debug_toolbar',
-    'directory_list',
 ]
 
 MIDDLEWARE = [
@@ -99,18 +97,18 @@ WSGI_APPLICATION = 'remote.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=config('DATABASE_URL')
+#    )
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -155,10 +153,10 @@ INTERNAL_IPS = [
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "uploads"),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, "uploads")
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), "media")
