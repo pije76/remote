@@ -1,0 +1,45 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load fontawesome_5 %}
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner topmenu">
+		<div class="container">
+			<div class="nav-collapse">
+				<ul class="nav pull-left">
+					<li><a href="/accounts/login">{% fa5_icon 'sign-in-alt' 'fas' %} Pencarian</a></li>
+				</ul>
+			</div>
+
+			<div id="logo">	
+				<a href="/">
+					<img src="{% static 'img/korexlogo.png' %}" title="Remote" width="53" height="65" />
+				</a>
+			</div>
+
+			<div class="nav-collapse">
+				<ul class="nav pull-right">
+					<li><a href="/accounts/login">{% fa5_icon 'sign-in-alt' 'fas' %} Login</a></li>
+					<li><a href="/accounts/signup">{% fa5_icon 'user-plus' 'fas' %} Daftar</a></li>
+					<li><a href="/profile">{% fa5_icon 'user-circle' 'fas' %} Profile</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="navbar-inner bottommenu">
+		<div class="container">
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li><a href="/">{% fa5_icon 'home' 'fas' %} Home</a></li>
+					<li><a href="/how-it-works">{% fa5_icon 'cog' 'fas' %} Cara Kerja</a></li>
+					<li><a href="/find-project">{% fa5_icon 'tasks' 'fas' %} Cari Proyek</a></li>
+					<li><a href="/find-freelancer">{% fa5_icon 'users' 'fas' %} Cari Freelancer</a></li>
+					<li><a href="/find-resume">{% fa5_icon 'tasks' 'fas' %} Cari Resume</a></li>
+					<li><a href="/find-service">{% fa5_icon 'tasks' 'fas' %} Cari Jasa</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div><!--/. navbar-inner -->
+</div>

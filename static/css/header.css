@@ -1,0 +1,60 @@
+.navbar-inner.topmenu {
+	height: 65px;
+	background-color: #fff;
+	background-image: none;
+	background-origin: padding-box;
+	background-position: 0 0;
+	background-repeat: repeat;
+	background-size: auto auto;
+	opacity: 0.85;
+	color: #000;
+	padding: 5px 0;
+}
+
+.navbar-inner.bottommenu {
+	border-bottom: 2px solid #1e73be;
+	height: 45px;
+	padding-top: 5px;
+	background-color: #f9f9f9;
+	background-image: none;
+	background-origin: padding-box;
+	background-position: 0 0;
+	background-repeat: repeat;
+	background-size: auto auto;
+	opacity: 0.85;
+}
+
+ul.nav.pull-right {
+	margin-top: 15px;
+}
+
+.navbar-inner.bottommenu > .container > .nav-collapse > ul.nav > li {
+	font-size: 14px;
+	font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+    text-transform: capitalize;
+}
+
+.navbar .nav.pull-right > li {
+    font-size: 12px;
+    font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.navbar .nav > li > a {
+    color: #666;
+    text-shadow: none;
+}
+
+.navbar .nav > li > a:hover {
+    color: #1e73be;
+    text-decoration: none;
+}
+
+#logo {
+	margin: 0 auto 0 25%;
+    width: 53px;
+    height: 65px;
+    position: absolute;
+}

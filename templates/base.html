@@ -1,0 +1,80 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load fontawesome_5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+        The Right Place To Find Clients, Freelancers, &amp; Portfolios In The World! - LancedIn
+        {% endblock %}
+    </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/body.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.masonry.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.masonry.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.isotope.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.expander.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.expander.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.columnizer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tiny_mce/tiny_mce.js' %}"></script>
+
+    <style type="text/css">
+        body { padding-top: 40px; }
+        label { display: block; }
+        .errorlist { padding-left: 0; color: red; }
+        .helptext { display: block; color: #666; font-size: small; }
+    </style>
+
+	<script type="text/javascript">
+		tinyMCE.init({
+		mode: "textareas",
+		theme: "advanced",
+		forced_root_block: false,
+		force_p_newlines : false,
+		force_br_newlines : true,
+	});
+	</script>
+    {{media}}
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% block extra_head %}
+    {% endblock %}
+
+    {% fontawesome_5_static %} 
+</head>
+
+<body>
+
+{% include "header.html" %}
+
+<div class="container">
+    {% block content %}
+    {{ flatpage.content|safe }}
+    {% endblock %}
+</div>
+
+{% include "footer.html" %}
+</body>
+</html>

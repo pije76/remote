@@ -1,0 +1,8 @@
+m_venv
+*.pyc
+staticfiles
+migrations
+media
+uploads
+*.db
+*.sqlite3
