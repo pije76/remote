@@ -27,12 +27,15 @@ SECRET_KEY = '$4w_b*$%f)54#7!us#e%%$&&r_w)zq*+ortmw3&&pr#+2ek9sd'
 DEBUG = True
 #DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['remote.co.id']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+#    'jet.dashboard',
+#    'jet',
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,11 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'pondation',    
+    'pondation',
     'project',
     'client',
     'agency',
     'freelancer',
+    'directory',
+#    'rating',
 
     'allauth',
     'allauth.account',
@@ -59,6 +64,7 @@ INSTALLED_APPS = [
     'carousel',
     'easy_thumbnails',
     'adminsortable',
+    'maintenance_mode',
     'debug_toolbar',
 ]
 
@@ -71,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'maintenance_mode.middleware.MaintenanceModeMiddleware'
 ]
 
 ROOT_URLCONF = 'remote.urls'
@@ -86,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'maintenance_mode.context_processors.maintenance_mode'
             ],
         },
     },
@@ -99,8 +107,14 @@ WSGI_APPLICATION = 'remote.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'remote',
+        'USER': 'pije76',
+        'HOST':'localhost',
+        'PASSWORD': 'tratap60',
+        'PORT': '3306',
     }
 }
 
@@ -191,3 +205,7 @@ HAYSTACK_CONNECTIONS = {
 STAR_RATINGS_RERATE = False
 STAR_RATINGS_RANGE = 10
 STAR_RATINGS_ANONYMOUS = True
+
+MAINTENANCE_MODE = False
+MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
+

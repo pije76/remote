@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
+from django.conf.urls.static import static
 
 from pondation import views
 from project import views
@@ -24,6 +25,8 @@ from agency import views
 from freelancer import views
 
 urlpatterns = [
+#    path(r'^jet/', include('jet.urls', 'jet')),
+#    path(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 	path('admin/', admin.site.urls),
 	path('', include('pondation.urls')),
 	path('accounts/', include('allauth.urls')),
@@ -34,8 +37,11 @@ urlpatterns = [
 	path('find-freelancer/', include('freelancer.urls')),
 	path('accounts/profile/', include('pondation.urls')),
 	path('search/', include('haystack.urls')),
-	path('ratings/', include('star_ratings.urls', namespace='ratings')),
+#	path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
