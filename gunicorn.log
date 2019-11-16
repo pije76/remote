@@ -1,0 +1,51 @@
+[2019-11-16 05:33:04 +0000] [25825] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:33:04 +0000] [25825] [ERROR] Retrying in 1 second.
+[2019-11-16 05:33:05 +0000] [25825] [ERROR] Retrying in 1 second.
+[2019-11-16 05:33:06 +0000] [25825] [ERROR] Retrying in 1 second.
+[2019-11-16 05:33:07 +0000] [25825] [ERROR] Retrying in 1 second.
+[2019-11-16 05:33:08 +0000] [25825] [ERROR] Retrying in 1 second.
+[2019-11-16 05:33:09 +0000] [25825] [ERROR] Can't connect to /run/gunicorn.sock
+[2019-11-16 05:35:59 +0000] [25975] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:35:59 +0000] [25975] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:00 +0000] [25975] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:01 +0000] [25975] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:02 +0000] [25975] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:03 +0000] [25975] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:04 +0000] [25975] [ERROR] Can't connect to /run/gunicorn.sock
+[2019-11-16 05:36:07 +0000] [26010] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:36:07 +0000] [26010] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:08 +0000] [26010] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:09 +0000] [26010] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:10 +0000] [26010] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:11 +0000] [26010] [ERROR] Retrying in 1 second.
+[2019-11-16 05:36:12 +0000] [26010] [ERROR] Can't connect to /run/gunicorn.sock
+[2019-11-16 05:40:22 +0000] [26190] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:40:22 +0000] [26190] [ERROR] Retrying in 1 second.
+[2019-11-16 05:40:23 +0000] [26190] [ERROR] Retrying in 1 second.
+[2019-11-16 05:40:24 +0000] [26190] [ERROR] Retrying in 1 second.
+[2019-11-16 05:40:25 +0000] [26190] [ERROR] Retrying in 1 second.
+[2019-11-16 05:40:26 +0000] [26190] [ERROR] Retrying in 1 second.
+[2019-11-16 05:40:27 +0000] [26190] [ERROR] Can't connect to /run/gunicorn.sock
+[2019-11-16 05:42:25 +0000] [26293] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:42:25 +0000] [26293] [INFO] Listening at: unix:/run/gunicorn.sock (26293)
+[2019-11-16 05:42:25 +0000] [26293] [INFO] Using worker: sync
+[2019-11-16 05:42:25 +0000] [26312] [INFO] Booting worker with pid: 26312
+[2019-11-16 05:42:25 +0000] [26314] [INFO] Booting worker with pid: 26314
+[2019-11-16 05:42:25 +0000] [26315] [INFO] Booting worker with pid: 26315
+[2019-11-16 05:42:25 +0000] [26317] [INFO] Booting worker with pid: 26317
+[2019-11-16 05:42:25 +0000] [26319] [INFO] Booting worker with pid: 26319
+[2019-11-16 05:42:29 +0000] [26293] [INFO] Handling signal: term
+[2019-11-16 12:42:29 +0700] [26314] [INFO] Worker exiting (pid: 26314)
+[2019-11-16 12:42:29 +0700] [26315] [INFO] Worker exiting (pid: 26315)
+[2019-11-16 12:42:29 +0700] [26317] [INFO] Worker exiting (pid: 26317)
+[2019-11-16 12:42:29 +0700] [26312] [INFO] Worker exiting (pid: 26312)
+[2019-11-16 12:42:29 +0700] [26319] [INFO] Worker exiting (pid: 26319)
+[2019-11-16 05:42:29 +0000] [26293] [INFO] Shutting down: Master
+[2019-11-16 05:42:30 +0000] [26350] [INFO] Starting gunicorn 19.9.0
+[2019-11-16 05:42:30 +0000] [26350] [INFO] Listening at: unix:/run/gunicorn.sock (26350)
+[2019-11-16 05:42:30 +0000] [26350] [INFO] Using worker: sync
+[2019-11-16 05:42:30 +0000] [26372] [INFO] Booting worker with pid: 26372
+[2019-11-16 05:42:30 +0000] [26373] [INFO] Booting worker with pid: 26373
+[2019-11-16 05:42:30 +0000] [26374] [INFO] Booting worker with pid: 26374
+[2019-11-16 05:42:30 +0000] [26377] [INFO] Booting worker with pid: 26377
+[2019-11-16 05:42:30 +0000] [26378] [INFO] Booting worker with pid: 26378
