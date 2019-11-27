@@ -20,9 +20,13 @@
 
 			<div class="nav-collapse">
 				<ul class="nav pull-right">
+					{% if user.is_authenticated %}
+					<li><a href="/accounts/logout">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a></li>
+					<li><a href="/accounts/profile">{% fa5_icon 'user-circle' 'fas' %} Profile</a></li>
+					{% else %}
 					<li><a href="/accounts/login">{% fa5_icon 'sign-in-alt' 'fas' %} Login</a></li>
 					<li><a href="/accounts/signup">{% fa5_icon 'user-plus' 'fas' %} Daftar</a></li>
-					<li><a href="/profile">{% fa5_icon 'user-circle' 'fas' %} Profile</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -33,11 +37,11 @@
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li><a href="/">{% fa5_icon 'home' 'fas' %} Home</a></li>
-					<li><a href="/how-it-works">{% fa5_icon 'cog' 'fas' %} Cara Kerja</a></li>
-					<li><a href="/find-project">{% fa5_icon 'tasks' 'fas' %} Cari Proyek</a></li>
-					<li><a href="/find-freelancer">{% fa5_icon 'users' 'fas' %} Cari Freelancer</a></li>
-					<li><a href="/find-resume">{% fa5_icon 'tasks' 'fas' %} Cari Resume</a></li>
-					<li><a href="/find-service">{% fa5_icon 'tasks' 'fas' %} Cari Jasa</a></li>
+					<li><a href="/cara-kerja">{% fa5_icon 'cog' 'fas' %} Cara Kerja</a></li>
+					<li><a href="/cari-proyek">{% fa5_icon 'tasks' 'fas' %} Cari Proyek</a></li>
+					<li><a href="/cari-freelancer">{% fa5_icon 'users' 'fas' %} Cari Freelancer</a></li>
+					<li><a href="/cari-resume">{% fa5_icon 'tasks' 'fas' %} Cari Resume</a></li>
+					<li><a href="/cari-layanan">{% fa5_icon 'tasks' 'fas' %} Cari Layanan</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

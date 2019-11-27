@@ -1,68 +1,68 @@
 {% extends "base.html" %}
-{% load i18n mptt_tags %}
+{% load i18n %}
+{% load mptt_tags %}
+{% load namify %}
 
 {% block content %}
+
 <div class="container-fluid">
-    <div class="well">
-        {% if user.is_authenticated %}
-        <h2>Browse for Projects</h2>
-        <div class="search">
-            <div class="input-append">
-                <form class="form-search" action="/search/" method="get">
-                    {{ form.as_table }}
-                    <b>Search Projects</b>
-                    <input class="span2" id="DropdownButton" type="text" name="q" value="">
-                    <button type="submit" class="btn">Search</button>
-                    <div class="btn-group">
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Category
-                            <span class="caret"></span>
-                        </button>
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Job Type
-                            <span class="caret"></span>
-                        </button>
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Location
-                            <span class="caret"></span>
-                        </button>
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Workload
-                            <span class="caret"></span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+	
+	{% if user.is_authenticated %}
+	<div class="well">
+		<div class="search">
+			<div class="input-append">
+				<form class="form-search" action="/search/" method="get">
+					{{ form.as_table }}
 
-    <div class="well">
-        {% recursetree parentcategory %}
-        <ul>
-        <div class="categoryTitle">
-        <a href="{{ node.slug }}">{{ node.title }} ({{ node.cat_count }})</a>
-        {% if not node.is_leaf_node %}
-        <li class="children">
-        {{ children }}
-        </li>
-        {% endif %}
-        </div>
-        </ul>
-        {% endrecursetree %}
-    </div>
+					<b>Search All Jobs by Keyword:</b>
+					<input class="span2" id="DropdownButton" type="text" name="q" value="">
+					<button type="submit" class="btn search">Search Job</button>
+					<a class="searchAdvanced" href="{{ node.slug }}">Advanced</a>
+				</form>
+			</div>
+		</div>
+	</div>
 
-    {% else %}
-    <div class="well">
-        <div class="span3">Span3</div>
-        <div class="span3">Span3</div>
-        <div class="span3">Span3</div>
-    </div>
-    <div class="well">
-        <div class="span6">
-            <h3>Over thousand projects were posted in the first half of 2013</h3>
-        </div>
-        <div class="span3">
-            <a href="/signup/">Sign up if not yet have account</a>
-        </div>
-    </div>
-    {% endif %}
+		<h3>Browse Jobs By Category or browse by Skill</h3>
+	<div class="well categorylist">
+		{% recursetree parentcategory %}
+		<div class="categoryTitle">
+			<ul>
+				{% if node.is_root_node %}
+				<b><a class="parentcategoryLink" href="{{ node.slug }}">{{ node.title }}</a></b>
+				{% elif node.is_child_node and not node.is_leaf_node or node.is_second_node %}
+				<a class="subcategoryLink" href="{{ node.slug }}">{{ node.title }}</a> ({{ node.cat_count }})
+				{% elif node.is_leaf_node and not node.is_root_node %}
+				{% endif %}
 
-    </div>
+				{% if not node.is_leaf_node %}
+				<li class="children">
+					{{ children }}
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+		{% endrecursetree %}
+	</div>
+
+	{% else %}
+	<div class="well">
+		<div class="span3">Span3</div>
+		<div class="span3">Span3</div>
+		<div class="span3">Span3</div>
+	</div>
+	
+	<div class="well">
+		<div class="span6">
+			<h3>Over thousand projects were posted in the first half of 2013</h3>
+		</div>
+		<div class="span3">
+			<a href="/signup/">Sign up if not yet have account</a>
+		</div>
+	</div>
+	{% endif %}
+
+	</div>
 </div>
 
 <script>

@@ -2,15 +2,24 @@
 {% load i18n %}
 {% load static %}
 {% load staticfiles %}
+{% comment "Optional" %}
 {% load carousel_tags %}
+{% load bootstrap_carousel_tags %}
+{% load hero_slider_tags %}
+{% endcomment %}
 
 {% block content %}
 <div class="container-fluid">
 
     <div class="row-fluid">
 
+{% comment "Optional note" %}
         {% generate_carousel 'principal' %}
-
+        {% render_carousel carousel %}
+        {% render_hero_slider %}
+        {% get_slider_items as items %}
+        {% include "some_template/slider.html with items=items" %}
+{% endcomment %}
         <div class="span4">
             {% block left %}
             <div class="well">
@@ -108,4 +117,15 @@
     </div>
 
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function() {
+    // put all your jQuery goodness in here.
+    $('.carousel').carousel({
+        /* interval: 3000 */
+    })
+});
+</script>
 {% endblock %}

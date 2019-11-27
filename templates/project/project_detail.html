@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load i18n mptt_tags %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="well">
         <p>
-            <a href="/find-project/">Back to the list of my projects</a>
-            / <a href="/find-project/edit/{{ project.slug }}">Edit</a>
-            / <a href='/find-project/delete/{{ project.slug }}'>Delete</a>
+            <a href="/cari-proyek/">Back to the list of my projects</a>
+            / <a href="/cari-proyek/edit/{{ project.slug }}">Edit</a>
+            / <a href='/cari-proyek/delete/{{ project.slug }}'>Delete</a>
         </p>
 
         <div class="projectDetail">

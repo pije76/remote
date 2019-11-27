@@ -5,8 +5,8 @@ from django.contrib.auth.models import AbstractUser
 from fontawesome_5.fields import IconField
 
 # Create your models here.
-class Profile(AbstractUser):
-	pass
+#class Profile(AbstractUser):
+#	pass
 #	is_freelancer = models.BooleanField('freelancer status', default=False)
 #	is_company = models.BooleanField('company status', default=False)
 #	first_name = models.CharField("First Name", max_length=80)

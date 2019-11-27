@@ -27,7 +27,8 @@ SECRET_KEY = '$4w_b*$%f)54#7!us#e%%$&&r_w)zq*+ortmw3&&pr#+2ek9sd'
 DEBUG = True
 #DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['remote.co.id']
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -35,7 +36,9 @@ ALLOWED_HOSTS = ['remote.co.id']
 INSTALLED_APPS = [
 #    'jet.dashboard',
 #    'jet',
-    'suit',
+#    'suit',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,26 +48,41 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'pondation',
-    'project',
+    'profiles',
     'client',
-    'agency',
+#    'agency',
     'freelancer',
-    'directory',
+    'project',
+#    'directory',
 #    'rating',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.linkedin',
+    'avatar',
 
     'localflavor',
     'fontawesome_5',
     'mptt',
+    'pure_pagination',
+#    'treebeard',
+#    'clean_urls',
+#    'categories',
+#    'categories.editor',
     'tagging',
+#    'tagulous',
+#    'sitecats',
+#    'sitecats_helpers',
+    'admirarchy',
     'haystack',
-    'carousel',
+#    'carousel',
+#    'django_bootstrap_carousel',
+#    'filer',
     'easy_thumbnails',
+#    'hero_slider',
     'adminsortable',
-    'maintenance_mode',
+#    'maintenance_mode',
     'debug_toolbar',
 ]
 
@@ -77,7 +95,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'maintenance_mode.middleware.MaintenanceModeMiddleware'
+#    'maintenance_mode.middleware.MaintenanceModeMiddleware'
 ]
 
 ROOT_URLCONF = 'remote.urls'
@@ -93,7 +111,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'maintenance_mode.context_processors.maintenance_mode'
+#                'maintenance_mode.context_processors.maintenance_mode'
             ],
         },
     },
@@ -107,14 +125,14 @@ WSGI_APPLICATION = 'remote.wsgi.application'
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'remote',
-        'USER': 'pije76',
-        'HOST':'localhost',
-        'PASSWORD': 'tratap60',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+#        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'NAME': 'remote',
+#        'USER': 'pije76',
+#        'HOST':'localhost',
+#        'PASSWORD': 'tratap60',
+#        'PORT': '3306',
     }
 }
 
@@ -165,32 +183,63 @@ INTERNAL_IPS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "uploads"),
+    os.path.join(BASE_DIR, "static"),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "uploads")
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), "media")
 
 AUTHENTICATION_BACKENDS = (
-#    'userena.backends.UserenaAuthenticationBackend',
-#    'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # Allauth settings
-AUTH_USER_MODEL = 'pondation.Profile'
-#ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-#LOGIN_REDIRECT_URL = 'profile'
-#LOGOUT_REDIRECT_URL = 'index'
-#ACCOUNT_AUTHENTICATION_METHOD = 'username'
-#ACCOUNT_FORMS = {'login': 'accounts.forms.MyLoginForm'}
-#ACCOUNT_LOGOUT_ON_GET = True
-#ACCOUNT_SESSION_REMEMBER = False
+#AUTH_USER_MODEL = 'profiles.Profile'
+
+#ACCOUNT_ADAPTER = 'profiles.AccountAdapter'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+#ACCOUNT_FORMS = {'login': 'profiles.forms.MyLoginForm'}
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_SESSION_REMEMBER = False
+#ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.SignupForm'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = "/account/logout/"
+
+#~ Allauth settings
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/account/'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_PASSWORD_MIN_LENGTH = 8
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+SOCIALACCOUNT_EMAIL_VERIFICATION  = False
+
+SOCIALACCOUNT_PROVIDERS = {
+    'linkedin': {
+        'SCOPE': [
+            'r_basicprofile',
+            'r_emailaddress'
+        ],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+            'picture-url',
+            'public-profile-url',
+        ]
+    }
+}
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -206,6 +255,21 @@ STAR_RATINGS_RERATE = False
 STAR_RATINGS_RANGE = 10
 STAR_RATINGS_ANONYMOUS = True
 
-MAINTENANCE_MODE = False
-MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
+#MAINTENANCE_MODE = False
+#MAINTENANCE_MODE_IGNORE_ADMIN_SITE = True
 
+MPTT_ADMIN_LEVEL_INDENT = 20
+
+SERIALIZATION_MODULES = {
+    'xml':    'tagulous.serializers.xml_serializer',
+    'json':   'tagulous.serializers.json',
+    'python': 'tagulous.serializers.python',
+    'yaml':   'tagulous.serializers.pyyaml',
+}
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

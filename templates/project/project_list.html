@@ -2,44 +2,103 @@
 {% load i18n %}
 
 {% block content %}
+
 <div class="container-fluid">
-    <div id="masonrycontainer">
 
-        {% if projectlist %}
-        {% for node in projectlist %}
+	<div id="pageTitle">
+    	 	<div> 
+    	 		<div class="breadcrumb"><h1>Web Design Jobs</h1>
+    	 		</div> 
+    	 	</div>
+    	 </div> 
 
-        <div class="itemSelector"> <!--- itemSelector (perulangan) -->
+    	 <div id="mainBody" class="layout2"> 
+    	 	<div id="col1"> 
 
-            <div class="itemTitle">
-                <a href="{{ node.slug }}">{{ node.title }}</a>
-                <br />
-            </div><!--End of itemTitle-->
+	<div id="searchResults" class="jobResults">
 
-            <div class="itemDescription">
-                <p>{{ node.description }}</p>
-            </div><!--End of itemDescription-->
+		{% if projectlist.has_other_pages %}
+			<ul class="paginator">
+				{% if projectlist.has_previous %}
+					<li><a href="?page={{ projectlist.previous_page_number }}">« Previous</a></li>
+				{% else %}
+					<li class="disabled"><span>«</span></li>
+				{% endif %}
+				{% for i in projectlist.paginator.page_range %}
+				{% if projectlist.number == i %}
+					<li class="currentPage"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+				{% else %}
+					<li><a href="?page={{ i }}">{{ i }}</a></li>
+				{% endif %}
+				{% endfor %}
+				{% if projectlist.has_next %}
+					<li><a href="?page={{ projectlist.next_page_number }}">Next »</a></li>
+				{% else %}
+					<li class="disabled"><span>»</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
 
-            <div class="itemDetail">
-                <p>Company: Flag: Rating: Skill: </p>
-            </div><!--End of itemDescription-->
+		{% if projectlist %}
+		{% for node in projectlist %}
+		<div class="searchResult">
+			<div class="content">
+				<div class="resultHeader">
+					<h3>
+						<a name="job_1" href="{{ node.slug }}">{{ node.title }}</a>
+					</h3>
+					<dl>
+						<dt class="type" name="job_1_type">Hourly</dt>
+						<dd class="budget" name="job_1_duration"> - Est. Time: Ongoing / More than 6 months, 10 hrs/week </dd>
+						<dd class="timeago" name="job_1_posted"> - Posted 27 minutes ago</dd>
+					</dl>
+				</div>
+				<div class="resultButtons" name="job_1_button" style="display: inline">
+					<a name="job_1" class="linkButton primary" href="" title="Apply">Apply</a>
+				</div>
 
-        </div><!--End of itemSelector-->
+				<div class="clearb"></div>
+				<p name="job_1_description">{{ node.description }}</p>
+				<dl class="details">
+					<dt>Employer: </dt>
+					<dd name="job_1_paid">
+						<span class="totalSpend topSpend" title="<strong>Over $20,000 paid - Payment Method Verified</strong><br />100 Total postings, 54 hires.<br/>Member Since 07/22/2008<br/>Location: Singapore<br/>ID: 52125"></span>
+					</dd>
+					<dd name="job_1_feedback">
+						<span class="feedbackRating starsSmall rating5" title="4.88 Stars<br/> 29 feedbacks"> </span>
+					</dd>
+				</dl>
+				<dl class="skills" name="job_2_skills"> <dt>Skills: </dt>
+					<dd>
+						<a href="" alt="Web Design and Development" title="Web Design and Development">Web Design and Development</a>
+					</dd>
+					<dd>
+						<span class="qualifications" name="job_0_qualifications" title="<ul><li name='job_0_q_location'>Location: Eastern Europe</li></ul>">
+							<span class="icon"></span>Qualifications
+						</span>
+					</dd>
+				</dl>
+			</div>
+		</div>
 
-        {% endfor %}
-        {% else %}
-        <p>No Projects Available</p>
-        {% endif %}
-    </div><!--End of masonrycontainer-->
+		{% endfor %}
+		{% else %}
+		<p>No Projects Available</p>
+		{% endif %}
+
+	</div>
+
 </div>
+
 <script>
 $(function()
-    {
-        $('#masonrycontainer').masonry(
-            {
-                itemSelector: '.itemSelector',
-                columnWidth : 395
-            });
-    });
+	{
+		$('#masonrycontainer').masonry(
+			{
+				itemSelector: '.itemSelector',
+				columnWidth : 395
+			});
+	});
 </script>
 
 <script>
@@ -79,15 +138,15 @@ $(function()
 
 <script>
 $(document).ready(function() {
-    $('div.itemDescription p').expander({
-        slicePoint: 100, // default is 100
-        expandText: 'show more', // default is 'read more'
-        userCollapseText: 'show less', // default is 'read less'
-        expandSpeed: 0, // default is 0
-        afterExpand: function() {
-            $(this).find('.details').css({display: 'inline'});
-        }
-    });
+	$('div.itemDescription p').expander({
+		slicePoint: 100, // default is 100
+		expandText: 'show more', // default is 'read more'
+		userCollapseText: 'show less', // default is 'read less'
+		expandSpeed: 0, // default is 0
+		afterExpand: function() {
+			$(this).find('.details').css({display: 'inline'});
+		}
+	});
 });
 </script>
 
