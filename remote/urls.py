@@ -18,31 +18,11 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from pondation import views
-from project import views
-from client import views
-from agency import views
-from freelancer import views
-#from profiles import views
-
-from pondation.views import index
-
 urlpatterns = [
 #    path('jet/', include('jet.urls', 'jet')),
 #    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 	path('admin/', admin.site.urls),
 #	path('', include('pondation.urls')),
-	path('', index, name='index'),
-    path('avatar/', include('avatar.urls')),
-	path('accounts/', include('allauth.urls')),
-    path('accounts/profile/', include('profiles.urls')),
-#    path('profile/', include('profiles.urls')),
-    path('cara-kerja/', include('pondation.urls')),
-	path('cari-proyek/', include('project.urls')),
-	path('cari-client/', include('client.urls')),
-#	path('cari-agency/', include('agency.urls')),
-	path('cari-freelancer/', include('freelancer.urls')),
-	path('search/', include('haystack.urls')),
 #	path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 
