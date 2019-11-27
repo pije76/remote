@@ -8,9 +8,7 @@ def index(request):
 	context = {}
 	return render(request, 'index.html', context)
 
-def howitwork(request):
-	howitworks = Profile.objects.all()
+def cara_kerja(request):
 	context = {
-		'howitworks': howitworks,
 	}
 	return render(request, 'index.html', context)
