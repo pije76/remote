@@ -2,31 +2,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-#from tagulous.models import TagField
-from tagging.fields import TagField
-
-from profiles.models import Profile
-from project.models import Category
+from profiles.models import Profile, Skill
 
 # Create your models here.
-class Skill(models.Model):
-#    title = TagAutocompleteTagItField(max_tags=10)
-	title = TagField()
-
-	class Meta:
-		verbose_name_plural = 'Skills'
-
-	def __str__(self):
-		return self.title
-
-	def set_tags(self, tags):
-		Skill.objects.update_tags(self, title)
-
-	def get_tags(self):
-		return Skill.objects.get_for_object(self)
-
-#tagging.register(Skill, tag_descriptor_attr='etags')
-
 class FreelancerProfile(models.Model):
 	MEMBERSHIP_CHOICES = (
 		('free', 'Free'),
@@ -46,7 +24,6 @@ class FreelancerProfile(models.Model):
 	balance= models.DecimalField(max_digits=10, decimal_places=2)
 	point = models.CharField("Point", max_length=80, null=False)
 	rate = models.CharField("Hourly Rate", max_length=80, null=False)
-	category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE)
 	skill = models.ForeignKey(Skill, null=False, blank=False, on_delete=models.CASCADE)
 	employment = models.CharField("Employment History", max_length=80, blank=True)
 	portfolio = models.CharField("Portfolio", max_length=80, blank=True)

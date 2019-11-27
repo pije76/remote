@@ -22,7 +22,7 @@
 				<ul class="nav pull-right">
 					{% if user.is_authenticated %}
 					<li><a href="/accounts/logout">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a></li>
-					<li><a href="/accounts/profile">{% fa5_icon 'user-circle' 'fas' %} Profile</a></li>
+					<li><a href="/accounts/profile/">{% fa5_icon 'user-circle' 'fas' %} Profile</a></li>
 					{% else %}
 					<li><a href="/accounts/login">{% fa5_icon 'sign-in-alt' 'fas' %} Login</a></li>
 					<li><a href="/accounts/signup">{% fa5_icon 'user-plus' 'fas' %} Daftar</a></li>

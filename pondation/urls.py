@@ -8,5 +8,4 @@ urlpatterns = [
 	path('', views.index, name='index'),
 	path('how-it-works/', views.howitwork, name='howitwork'),
 #	path('accounts/', include('allauth.urls')),
-	path('profile/', views.profile, name='profile'),
 ]

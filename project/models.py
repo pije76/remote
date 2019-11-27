@@ -63,12 +63,57 @@ def get_expire():
 
 
 # Create your models here.
+
+class Category(MPTTModel):
+	title = models.CharField(max_length=200, unique=True, blank=False)
+	slug = models.SlugField(max_length=200, unique=True)
+	parent = TreeForeignKey('self', blank=True, null=True, related_name='children', db_index=True, on_delete=models.CASCADE)
+
+	class MPTTMeta:
+		order_insertion_by = ['title']
+
+	class Meta:
+		verbose_name_plural = "Categories"
+		unique_together = ('slug', 'parent',)
+#        level_attr = 'mptt_level'
+#        order_insertion_by = ['title']
+
+	def get_count(self):
+		return Category.objects.filter(title=self).count()
+
+#	@permalink
+	def get_absolute_url(self):
+#		return ('project.views.project_category', (), {'slug': self.slug})
+		return reverse(
+			'project.views.project_category', 
+			args=[self.slug,])
+
+	def is_second_node(self):
+		return True if (self.get_ancestors().count() == 1) else False
+
+	def __str__(self):
+		if self.parent:
+			return u'%s: %s' % (self.parent.title, self.title)
+		return u'%s' % (self.title)
+
+#class SubCategory(models.Model):
+#    title = models.CharField(max_length=200, unique=True, blank=False)
+#    slug = models.SlugField(max_length=200, unique=True)
+#    category = models.ForeignKey('project.Category')
+
+#    def __str__(self):
+#        return u'%s' % (self.title)
+
+#    class Meta:
+#        verbose_name_plural = "Sub Categories"
+
+
 class Project (models.Model):
 	title = models.CharField("Project Title", max_length=200, unique=True)
 	slug = models.SlugField(max_length=200, unique=True, help_text='Automatically built from the title.')
 	category = models.ForeignKey('project.Category', null=True, on_delete=models.CASCADE)
 #    sub_category = models.ForeignKey('project.SubCategory', null=True)
-	skill = models.ManyToManyField('freelancer.Skill')
+	skill = models.ManyToManyField('profiles.Skill')
 	description = models.TextField("project Description")
 	project_type = models.CharField("Project Type", max_length=60, choices=TYPE_CHOICES,)
 	rate = models.CharField("Rate", max_length=60, choices=RATE_CHOICES,)
@@ -129,62 +174,3 @@ class Project (models.Model):
 		get_latest_by = 'create_date'
 		verbose_name = 'Project'
 
-
-class Category(MPTTModel):
-	title = models.CharField(max_length=200, unique=True, blank=False)
-	slug = models.SlugField(max_length=200, unique=True)
-	parent = TreeForeignKey('self', blank=True, null=True, related_name='children', db_index=True, on_delete=models.CASCADE)
-
-	class MPTTMeta:
-		order_insertion_by = ['title']
-
-	class Meta:
-		verbose_name_plural = "Categories"
-		unique_together = ('slug', 'parent',)
-#        level_attr = 'mptt_level'
-#        order_insertion_by = ['title']
-
-	def get_count(self):
-		return Category.objects.filter(title=self).count()
-
-#	@permalink
-	def get_absolute_url(self):
-#		return ('project.views.project_category', (), {'slug': self.slug})
-		return reverse(
-			'project.views.project_category', 
-			args=[self.slug,])
-
-	def is_second_node(self):
-		return True if (self.get_ancestors().count() == 1) else False
-
-	def __str__(self):
-		if self.parent:
-			return u'%s: %s' % (self.parent.title, self.title)
-		return u'%s' % (self.title)
-
-#class SubCategory(models.Model):
-#    title = models.CharField(max_length=200, unique=True, blank=False)
-#    slug = models.SlugField(max_length=200, unique=True)
-#    category = models.ForeignKey('project.Category')
-
-#    def __str__(self):
-#        return u'%s' % (self.title)
-
-#    class Meta:
-#        verbose_name_plural = "Sub Categories"
-
-
-class Skill(models.Model):
-#    title = TagAutocompleteTagItField(max_tags=10)
-	title = TagField()
-
-	def __str__(self):
-		return self.title
-
-	def set_tags(self, tags):
-		Skill.objects.update_tags(self, title)
-
-	def get_tags(self):
-		return Skill.objects.get_for_object(self)
-
-#tagging.register(Skill, tag_descriptor_attr='etags')
