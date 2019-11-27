@@ -37,8 +37,8 @@ INSTALLED_APPS = [
 #    'jet.dashboard',
 #    'jet',
 #    'suit',
-    'dal',
-    'dal_select2',
+#    'dal',
+#    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 #    'tagulous',
 #    'sitecats',
 #    'sitecats_helpers',
-    'admirarchy',
+#    'admirarchy',
     'haystack',
 #    'carousel',
 #    'django_bootstrap_carousel',
@@ -186,6 +186,7 @@ INTERNAL_IPS = [
 STATIC_URL = '/assets/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+	'/home/ubuntu/.virtualenvs/remote/lib/python3.6/site-packages/django/contrib/admin/static',
 )
 STATIC_ROOT = os.path.join(BASE_DIR, "uploads")
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
