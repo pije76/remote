@@ -77,7 +77,7 @@ INSTALLED_APPS = [
     'profiles',
     'client',
     'freelancer',
-#    'project',
+    'project',
 #    'agency',
 #    'directory',
 #    'rating',
