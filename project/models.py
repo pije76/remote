@@ -4,6 +4,7 @@ from django.db.models import signals
 from django.template.defaultfilters import slugify
 from django.contrib.sitemaps import ping_google
 from django.core.exceptions import *
+from django.utils.text import slugify
 
 from tagging.fields import TagField
 from haystack import indexes
@@ -74,7 +75,7 @@ class Project (models.Model):
 	budget = models.CharField("Budget", max_length=60, choices=BUDGET_CHOICES,)
 	workload = models.CharField("Workload", max_length=60, choices=WORKLOAD_CHOICES,)
 	duration = models.CharField("Duration", max_length=60, choices=DURATION_CHOICES,)
-	create_date = models.DateTimeField('Date Published', auto_now_add=True, blank=True, null=True)
+	create_date = models.DateField('Date Created', auto_now_add=True, blank=True, null=True)
 	expire_date = models.DateField('Expire Date', default=get_expire, blank=True, null=True, db_index=True)
 	project_owner = models.ForeignKey('client.ClientProfile', blank=True, null=True, on_delete=models.CASCADE)
 

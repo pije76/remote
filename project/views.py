@@ -150,12 +150,13 @@ def project_list(request, slug):
 
 
 
-def project_detail(request, slug, category):
+def project_detail(request, slug, pk, category, format="html"):
 	category = Category.objects.filter(slug=category)
-	projectdetail = Project.objects.filter(slug=slug)
+	projectdetail = Project.objects.filter(slug=slug, pk=pk)
 	context = {
 		'category': category,
 		'projectdetail': projectdetail,
+		'format': format,
 	}
 #    return object_list(request, queryset=Category.objects.all(), paginate_by=20, template_name='project/project_list.html', extra_context={'category': category})
 #	return render_to_response('project/project_detail.html', {'projectdetail': projectdetail},  context_instance=RequestContext(request))

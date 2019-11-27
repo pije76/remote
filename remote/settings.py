@@ -49,10 +49,10 @@ INSTALLED_APPS = [
 
     'pondation',
     'profiles',
-    'client',
-#    'agency',
-    'freelancer',
     'project',
+    'client',
+    'freelancer',
+#    'agency',
 #    'directory',
 #    'rating',
 
