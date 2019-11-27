@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, User
 from django.utils.translation import ugettext_lazy as _
 
-#from tagulous.models import TagField
-from tagging.fields import TagField
 from localflavor.id_.id_choices import PROVINCE_CHOICES
 
 
@@ -64,22 +62,3 @@ class Profile(models.Model):
 #		Profile.objects.create(user=instance)
 
 #post_save.connect(create_user_profile, sender=User)
-
-class Skill(models.Model):
-#    title = TagAutocompleteTagItField(max_tags=10)
-	title = TagField()
-
-	class Meta:
-		verbose_name_plural = 'Skills'
-
-	def __str__(self):
-		return self.title
-
-	def set_tags(self, tags):
-		Skill.objects.update_tags(self, title)
-
-	def get_tags(self):
-		return Skill.objects.get_for_object(self)
-
-#tagging.register(Skill, tag_descriptor_attr='etags')
-

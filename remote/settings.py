@@ -37,8 +37,6 @@ INSTALLED_APPS = [
 #    'jet.dashboard',
 #    'jet',
 #    'suit',
-#    'dal',
-#    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,21 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'tagging',
+    'tagulous',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.linkedin',
-
-    'pondation',
-    'profiles',
-    'project',
-    'freelancer',
-    'client',
-    'agency',
-#    'directory',
-#    'rating',
-
     'avatar',
 
     'localflavor',
@@ -72,19 +60,28 @@ INSTALLED_APPS = [
 #    'clean_urls',
 #    'categories',
 #    'categories.editor',
-#    'tagulous',
 #    'sitecats',
 #    'sitecats_helpers',
-    'admirarchy',
+#    'admirarchy',
     'haystack',
 #    'carousel',
 #    'django_bootstrap_carousel',
 #    'filer',
     'easy_thumbnails',
 #    'hero_slider',
-    'adminsortable',
+#    'adminsortable',
 #    'maintenance_mode',
     'debug_toolbar',
+
+    'pondation',
+    'profiles',
+    'client',
+    'freelancer',
+    'project',
+#    'agency',
+#    'directory',
+#    'rating',
+
 ]
 
 MIDDLEWARE = [

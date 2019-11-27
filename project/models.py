@@ -6,7 +6,6 @@ from django.contrib.sitemaps import ping_google
 from django.core.exceptions import *
 from django.utils.text import slugify
 
-from tagging.fields import TagField
 from haystack import indexes
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -63,7 +62,6 @@ def get_expire():
 
 
 # Create your models here.
-
 class Category(MPTTModel):
 	title = models.CharField(max_length=200, unique=True, blank=False)
 	slug = models.SlugField(max_length=200, unique=True)
@@ -96,33 +94,25 @@ class Category(MPTTModel):
 			return u'%s: %s' % (self.parent.title, self.title)
 		return u'%s' % (self.title)
 
-#class SubCategory(models.Model):
-#    title = models.CharField(max_length=200, unique=True, blank=False)
-#    slug = models.SlugField(max_length=200, unique=True)
-#    category = models.ForeignKey('project.Category')
-
-#    def __str__(self):
-#        return u'%s' % (self.title)
-
-#    class Meta:
-#        verbose_name_plural = "Sub Categories"
-
-
 class Project (models.Model):
 	title = models.CharField("Project Title", max_length=200, unique=True)
 	slug = models.SlugField(max_length=200, unique=True, help_text='Automatically built from the title.')
-	category = models.ForeignKey('project.Category', null=True, on_delete=models.CASCADE)
-#    sub_category = models.ForeignKey('project.SubCategory', null=True)
-	skill = models.ManyToManyField('profiles.Skill')
-	description = models.TextField("project Description")
-	project_type = models.CharField("Project Type", max_length=60, choices=TYPE_CHOICES,)
-	rate = models.CharField("Rate", max_length=60, choices=RATE_CHOICES,)
-	budget = models.CharField("Budget", max_length=60, choices=BUDGET_CHOICES,)
-	workload = models.CharField("Workload", max_length=60, choices=WORKLOAD_CHOICES,)
-	duration = models.CharField("Duration", max_length=60, choices=DURATION_CHOICES,)
+	category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
+	skill = models.ForeignKey('freelancer.Skill', null=True, on_delete=models.CASCADE)
+	description = models.TextField("Project Description")
+	project_type = models.CharField("Project Type", max_length=60, choices=TYPE_CHOICES)
+	rate = models.CharField("Rate", max_length=60, choices=RATE_CHOICES)
+	budget = models.CharField("Budget", max_length=60, choices=BUDGET_CHOICES)
+	workload = models.CharField("Workload", max_length=60, choices=WORKLOAD_CHOICES)
+	duration = models.CharField("Duration", max_length=60, choices=DURATION_CHOICES)
 	create_date = models.DateField('Date Created', auto_now_add=True, blank=True, null=True)
 	expire_date = models.DateField('Expire Date', default=get_expire, blank=True, null=True, db_index=True)
 	project_owner = models.ForeignKey('client.ClientProfile', blank=True, null=True, on_delete=models.CASCADE)
+
+	class Meta:
+		ordering = ('-create_date',)
+		get_latest_by = 'create_date'
+		verbose_name = 'Project'
 
 	def __str__(self):
 		return (self.title)
@@ -168,9 +158,3 @@ class Project (models.Model):
 		# Bare 'except' because we could get a variety
 		# of HTTP-related exceptions.
 			pass
-
-	class Meta:
-		ordering = ('-create_date',)
-		get_latest_by = 'create_date'
-		verbose_name = 'Project'
-

@@ -5,7 +5,7 @@ from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 #from treebeard.forms import movenodeform_factory
 from suit.admin import SortableModelAdmin
 
-from .models import Project, Category
+from .models import Category, Project
 
 # Register your models here.
 #class CategoryAdmin(admin.ModelAdmin):
@@ -28,6 +28,7 @@ class ProjectAdmin(admin.ModelAdmin):
 	search_fields = ('title', 'description')
 	list_filter = ('project_owner', 'create_date')
 	prepopulated_fields = {"slug": ("title",)}
+
 
 admin.site.register(Category, CategoryAdmin)
 #admin.site.register(Category , MPTTModelAdmin) 

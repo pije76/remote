@@ -3,8 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from django.db import connection, transaction
 
-#from tagging.models import Tag, TaggedItem
-
 # Create your views here.
 def index(request):
 	context = {}

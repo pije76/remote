@@ -6,10 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .models import FreelancerProfile
 
 # Create your views here.
-def index(request):
-	context = {}
-	return render(request, 'index.html', context)
-
 def freelancerprofile(request):
 	freelancerprofiles = FreelancerProfile.objects.all()
 	context = {
