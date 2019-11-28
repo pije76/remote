@@ -123,7 +123,7 @@ WSGI_APPLICATION = 'remote.wsgi.application'
 
 import dj_database_url
 
-DATABASE_URL = 'mysql://pije76:tratap60@localhost:3306/remote'
+DATABASE_URL = 'sqlite:////var/www/html/remote/db.sqlite'
 
 DATABASES = {
     'default': dj_database_url.config(
