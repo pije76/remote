@@ -122,14 +122,14 @@ WSGI_APPLICATION = 'remote.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-#        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#        'NAME': 'remote',
-#        'USER': 'pije76',
-#        'HOST':'localhost',
-#        'PASSWORD': 'tratap60',
-#        'PORT': '3306',
+#        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'remote',
+        'USER': 'pije76',
+        'HOST':'localhost',
+        'PASSWORD': 'tratap60',
+        'PORT': '3306',
     }
 }
 
