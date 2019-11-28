@@ -2,27 +2,28 @@
 {% load i18n mptt_tags %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="well">
+<div class="container">
+    <div class="row">
         <p>
             <a href="/cari-proyek/">Back to the list of my projects</a>
             / <a href="/cari-proyek/edit/{{ project.slug }}">Edit</a>
             / <a href='/cari-proyek/delete/{{ project.slug }}'>Delete</a>
         </p>
+    </div>
 
+    <div class="row">
         <div class="projectDetail">
-            <div class="well">
-                {% for project in projectdetail %}
-                <div class="projectTitle">
-                    <h3>{{ project.title }}</h3>
-                    <br />
-                    Job Description
-                    <br />
-                    {{ project.description }}
-                </div>
-                {% endfor %}
+            {% for project in projectdetail %}
+            <div class="projectTitle">
+                <h3>{{ project.title }}</h3>
+                <br />
+                Job Description
+                <br />
+                {{ project.description }}
             </div>
+            {% endfor %}
         </div>
     </div>
+
 </div>
 {% endblock %}

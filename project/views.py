@@ -128,7 +128,7 @@ def project_list(request, slug):
 	projects = Project.objects.filter(category=category).order_by('-create_date')
 #	projects = Project.objects.all()
 	page = request.GET.get('page', 1)
-	paginator = Paginator(projects, 4)  # 2 posts in each page
+	paginator = Paginator(projects, 2)  # 2 posts in each page
 	#projects = Category.objects.all()
 	#projects = Category.tree.all()
 	#projects = Category.tree.root_nodes()

@@ -2,20 +2,29 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-from tagulous.models import TagField
+import tagulous.models
 
 from profiles.models import Profile
 
 # Create your models here.
-class Skill(models.Model):
-#    title = TagAutocompleteTagItField(max_tags=10)
-	title = TagField()
+class Skill(tagulous.models.TagTreeModel):
+	class TagMeta:
+		initial = [
+			'Python/Django',
+			'Python/Flask',
+			'JavaScript/JQuery',
+			'JavaScript/Angular.js',
+			'Linux/nginx',
+			'Linux/uwsgi',
+		]
+		space_delimiter = False
+#		autocomplete_view = 'skill_autocomplete'
 
 	class Meta:
 		verbose_name_plural = 'Skills'
 
-	def __str__(self):
-		return self.title
+#	def __str__(self):
+#		return self.title
 
 #	def set_tags(self, tags):
 #		Skill.objects.update_tags(self, title)
@@ -43,7 +52,8 @@ class FreelancerProfile(models.Model):
 	point = models.CharField("Point", max_length=80, null=False)
 	rate = models.CharField("Hourly Rate", max_length=80, null=False)
 	category = models.ForeignKey('project.Category', null=False, blank=False, on_delete=models.CASCADE)
-	skill = models.ForeignKey(Skill, null=False, blank=False, on_delete=models.CASCADE)
+#	skill = models.ForeignKey(Skill, null=False, blank=False, on_delete=models.CASCADE)
+	skill = tagulous.models.TagField(Skill, help_text="This field does not split on spaces",)
 	employment = models.CharField("Employment History", max_length=80, blank=True)
 	portfolio = models.CharField("Portfolio", max_length=80, blank=True)
 	certificate = models.CharField("Certifications", max_length=80, blank=True)

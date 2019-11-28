@@ -9,18 +9,19 @@
 {% endcomment %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container content">
 
-    <div class="row-fluid">
+    <div class="row">
 
-{% comment "Optional note" %}
+        {% comment "Optional note" %}
         {% generate_carousel 'principal' %}
         {% render_carousel carousel %}
         {% render_hero_slider %}
         {% get_slider_items as items %}
         {% include "some_template/slider.html with items=items" %}
-{% endcomment %}
-        <div class="span4">
+        {% endcomment %}
+
+        <div class="col">
             {% block left %}
             <div class="well">
                 <div class="left-h1">
@@ -41,7 +42,7 @@
             {% endblock %}
         </div>
 
-        <div class="span4">
+        <div class="col">
             {% block center %}
             <div class="well">
                 <div class="center-h1">
@@ -62,7 +63,7 @@
             {% endblock %}
         </div>
 
-        <div class="span4">
+        <div class="col">
             {% block right %}
             <div class="well">
                 <div class="right-h1">
@@ -85,30 +86,30 @@
 
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
         <div class="span12">
             {% block bottom %}
             <div id="how-it-works">
                 <div class="well">
-                    <div class="row-fluid">
+                    <div class="row">
 
-                        <div class="span4">
+                        <div class="col">
                             <img src="{% static 'img/how-it-work-1.png' %}" style="float: left;" title="Hire on demand" width="66" height="66" />
                             <a href="/how-it-works/"><h2>Hire on demand</h2></a>
                             <p>With a huge amount of talent, you're will to find just the right Freelancer and build a flexible workforce based on their skills, ratings, and reviews.</p>
-                        </div><!-- /.span4 -->
+                        </div><!-- /.col -->
 
-                        <div class="span4">
+                        <div class="col">
                             <img src="{% static 'img/how-it-work-2.png' %}" style="float: left; margin-left:10px;" title="Manage the work" width="66" height="66" />
                             <a href="/how-it-works/"><h2>Manage the work</h2></a>
                             <p>Manage teams from your desktop and see work-in-progress screenshots, time sheets, and daily logs using our seamless project management tools.</p>
-                        </div><!-- /.span4 -->
+                        </div><!-- /.col -->
 
-                        <div class="span4">
+                        <div class="col">
                             <img src="{% static 'img/how-it-work-3.png' %}" style="float: left; margin-left:25px;" title="Pay with ease" width="66" height="66" />
                             <a href="/how-it-works/"><h2>Pay with ease</h2></a>
                             <p>Payment is simple and fast once your project is complete. For added protection, rest assured with safe global payments.</p>
-                        </div><!-- /.span4 -->
+                        </div><!-- /.col -->
                     </div>
                 </div>
             </div>

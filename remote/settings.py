@@ -64,12 +64,10 @@ INSTALLED_APPS = [
 #    'sitecats_helpers',
 #    'admirarchy',
     'haystack',
-#    'carousel',
 #    'django_bootstrap_carousel',
 #    'filer',
     'easy_thumbnails',
 #    'hero_slider',
-#    'adminsortable',
 #    'maintenance_mode',
     'debug_toolbar',
 
@@ -81,7 +79,8 @@ INSTALLED_APPS = [
 #    'agency',
 #    'directory',
 #    'rating',
-
+#    'carousel',
+    'adminsortable',
 ]
 
 MIDDLEWARE = [
@@ -272,4 +271,4 @@ PAGINATION_SETTINGS = {
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
 
-APPEND_SLASH = False
+#APPEND_SLASH = False

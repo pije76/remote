@@ -1,13 +1,19 @@
 from django.contrib import admin
 
-from .models import FreelancerProfile, Skill
-
 import tagulous.admin
 
-# Register your models here.
-class SkillAdmin(admin.ModelAdmin):
-    list_display = ['title',]
+from . import models
 
-admin.site.register(FreelancerProfile)
-tagulous.admin.register(Skill, SkillAdmin)
+# Register your models here.
+class FreelancerProfileAdmin(admin.ModelAdmin):
+    list_display = ('username', 'category', 'skill', 'rate')
+    list_filter = ('username', 'category', 'skill', 'rate')
+
+#admin.site.register(FreelancerProfile)
+tagulous.admin.register(models.FreelancerProfile, FreelancerProfileAdmin)
+#admin.site.register(Skill)
+#tagulous.admin.register(Skill, SkillAdmin)
+#tagulous.admin.register(models.Skill)
 #admin.site.register(Skill, SkillAdmin)
+tagulous.admin.register(models.Skill)
+

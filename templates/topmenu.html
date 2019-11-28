@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+{% load fontawesome_5 %}
+
+<nav class="navbar navbar-expand-md navbar-light bg-white topmenu">
+
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">{% fa5_icon 'sign-in-alt' 'fas' %} Pencarian</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mx-auto order-0">	
+        <a class="navbar-brand mx-auto" href="/">
+        	<img src="{% static 'img/korexlogo.png' %}" title="Remote" width="53" height="65" />
+        </a>
+    </div>
+
+    {% if user.is_authenticated %}
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/message/">{% fa5_icon 'envelope' 'fas' %} Message</a>
+            </li>
+			<li class="nav-item dropdown megamenu">
+				<a id="megamneu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase"href="/accounts/profile/">{% fa5_icon 'user-circle' 'fas' %} Profile</a>
+				<div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
+					<div class="col-lg-6 .offset-lg-6">
+						<ul class="list-unstyled">
+							<li class="nav-item">
+								<a class="nav-link text-small pb-0" href="/accounts/profile/">{% fa5_icon 'user-circle' 'fas' %} Profile</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-small pb-0" href="/accounts/logout">{% fa5_icon 'sign-out-alt' 'fas' %} Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	{% else %}
+
+	<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/accounts/login">{% fa5_icon 'sign-in-alt' 'fas' %} Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/accounts/signup">{% fa5_icon 'user-plus' 'fas' %} Daftar</a></li>
+            </li>
+        </ul>
+    </div>
+
+	{% endif %}
+
+</nav>

@@ -14,7 +14,7 @@ class Profile(models.Model):
 	)
 
 	user = models.OneToOneField(User, null=True, related_name="profile", verbose_name=_('User'), on_delete=models.CASCADE)
-	membertype = models.CharField('Tipe Keanggotaan', max_length=30, choices=MEMBERTYPE_CHOICES, unique=True, blank=False)
+	membertype = models.PositiveSmallIntegerField('Tipe Keanggotaan', choices=MEMBERTYPE_CHOICES, unique=True, blank=False)
 	first_name = models.CharField("Nama Depan", max_length=128)
 	last_name = models.CharField("Nama Belakang", max_length=128)
 	email = models.EmailField("Email", max_length=128)

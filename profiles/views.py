@@ -42,7 +42,7 @@ class ProfileIdentite(LoginRequiredMixin, UpdateView):
 		user.first_name = form.cleaned_data['first_name']
 		user.last_name = form.cleaned_data['last_name']
 		user.save()
-		profile.gender = form.cleaned_data['gender']
+		profile.membertype = form.cleaned_data['membertype']
 		profile.phone = form.cleaned_data['phone']
 		profile.personal_info_is_completed = True
 		profile.completion_level = profile.get_completion_level()
